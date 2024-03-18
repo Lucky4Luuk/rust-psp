@@ -109,6 +109,9 @@ pub use font::*;
 mod psmf;
 pub use psmf::*;
 
+mod gps;
+pub use gps::*;
+
 // These are not found (likely because this was tested in user mode on a PSP-2000).
 // pub mod sircs;
 // pub mod codec;

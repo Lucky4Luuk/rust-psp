@@ -3,9 +3,11 @@ use core::ffi::c_void;
 
 /// For use with `sceUsbActivate` and `sceUsbDeactivate`.
 pub const USB_CAM_PID: i32 = 0x282;
+pub const USB_GPS_PID: i32 = 0x283;
 
 pub const USB_BUS_DRIVER_NAME: &str = "USBBusDriver";
 pub const USB_CAM_DRIVER_NAME: &str = "USBCamDriver";
+pub const USB_GPS_DRIVER_NAME: &str = "USBGps_Driver";
 pub const USB_CAM_MIC_DRIVER_NAME: &str = "USBCamMicDriver";
 pub const USB_STOR_DRIVER_NAME: &str = "USBStor_Driver";
 
