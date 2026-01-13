@@ -140,13 +140,13 @@ impl core::ops::Add<CommitDate> for CommitDate {
 // below. Note that the `day` field lags by one day, as the toolchain always
 // contains the previous days' nightly rustc.
 const MINIMUM_COMMIT_DATE: CommitDate = CommitDate {
-    year: 2023,
+    year: 2025,
     month: 3,
-    day: 27,
+    day: 18,
 };
 const MINIMUM_RUSTC_VERSION: Version = Version {
     major: 1,
-    minor: 70,
+    minor: 87,
     patch: 0,
     pre: Prerelease::EMPTY,
     build: BuildMetadata::EMPTY,
@@ -260,7 +260,7 @@ fn main() {
             .iter()
             .filter(|p| workspace_members.contains(&p.id))
             .flat_map(|p| &p.targets)
-            .filter(|t| t.crate_types.iter().any(|ct| *ct == "bin"))
+            .filter(|t| t.crate_types.iter().any(|ct| *ct == "bin".into()))
             .count();
 
         total_executables == 1

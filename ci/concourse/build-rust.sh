@@ -31,21 +31,19 @@ fi
 
 # Test formatting
 rustup component add rustfmt
-pushd repo/
-cargo fmt --check
+{
+    cargo fmt --message-format=short --manifest-path=repo/cargo-psp/Cargo.toml -- --check
+    # TODO: remove `-ppsp` after formatting new workspace
+    cargo fmt --manifest-path=repo/Cargo.toml -p psp -- --check
+}
 status=$?
 if test $status -ne 0
     then echo "Formatting errors: Please run cargo fmt on your changes"
     exit 1
 fi
-popd
 
 # build cargo-psp
-pushd repo/cargo-psp/
-cargo build
-popd
-
-PATH="$(pwd)/repo/target/debug:$PATH"
+cargo install --path repo/cargo-psp
 
 # build the test project
 pushd repo/ci/tests
@@ -56,4 +54,4 @@ popd
 # concourse task.
 mkdir -p rust-build-dir
 
-cp -r repo/ci/tests/target/mipsel-sony-psp/debug/* rust-build-dir
+cp -r repo/target/mipsel-sony-psp/debug/* rust-build-dir
